@@ -1,0 +1,5 @@
+to run just 
+
+sudo python setup.py install
+
+rock-paper-scissors

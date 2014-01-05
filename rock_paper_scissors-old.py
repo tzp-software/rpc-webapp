@@ -9,13 +9,15 @@ def index():
         #return str(request.form) + str(request.get_data())#str(dir(request))
         choice = request.form['choice']
         compChoice = get_rps_choice()
-        winner, quote = get_rps_winner(choice,compChoice,quote=True)
+        winner = get_rps_winner(choice,compChoice)
         if winner == 1:
-            return render_template('results-a.html',choice=choice,compChoice=compChoice,quote=quote)
-        elif winner == 2:
-            return render_template('results-b.html',choice=choice,compChoice=compChoice,quote=quote)
+            return '''you chose {}   computer chose {}
+            You Won!!
+            <input type="submit" method="get" value="play again" action="index"/>'''.format(choice,compChoice)
         else:
-            return render_template('results-c.html',choice=choice,compChoice=compChoice)
+            return '''you chose {} computer chose {}
+            You lost!!
+            <input type="submit" method="get" value="play again" action="index"/>'''.format(choice,compChoice)
     return render_template('index.html')
 
 if __name__ == "__main__":
